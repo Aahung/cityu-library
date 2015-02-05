@@ -1,0 +1,29 @@
+{
+    "unit": {
+        "name": "book",
+        "selector": "tr.patFuncEntry",
+    },
+    "property": [
+                 {
+                 "name": "id",
+                 "selector": ".patFuncMark input",
+                 "index": 0,
+                 "attribute": "value"
+                 }, {
+                 "name": "title",
+                 "selector": ".patFuncTitle .patFuncTitleMain",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "link",
+                 "selector": ".patFuncTitle a",
+                 "index": 0,
+                 "attribute": "href"
+                 }, {
+                 "name": "status",
+                 "selector": ".patFuncStatus",
+                 "index": 0,
+                 "attribute": "text"
+                 }
+                 ]
+}

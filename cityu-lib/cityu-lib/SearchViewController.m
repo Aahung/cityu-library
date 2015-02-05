@@ -8,9 +8,11 @@
 
 #import "SearchViewController.h"
 #import "BookTableViewCell.h"
+#import "BookDetailViewController.h"
 #import "Library.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MBProgressHUD.h"
+
 
 @interface SearchViewController ()
 
@@ -39,6 +41,17 @@
     [singleTap setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:singleTap];
     [self.navigationController.view addGestureRecognizer:singleTap];
+    
+    UIImageView * bgImageView = [[UIImageView alloc] init];
+    [bgImageView setImage:[UIImage imageNamed:@"bg"]];
+    self.tableView.backgroundView = bgImageView;
+    self.tableView.backgroundView.alpha = 0.3;
+    self.tableView.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    // version
+    NSString * version = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleShortVersionString"];
+    NSString * buildNumber = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleVersion"];
+    self.searchBar.placeholder = [NSString stringWithFormat:@"version: %@ (%@)", version, buildNumber];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,14 +62,16 @@
     if (selectedIndexPath != nil) {
         [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:true];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    
+    // open the beyboard
     if (!self.lauched) {
         [self.searchBar becomeFirstResponder];
         self.lauched = true;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,37 +83,79 @@
     return [self.books count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSMutableDictionary * book = self.books[section];
+    if ([book valueForKey:@"location"] != nil
+        && [book valueForKey:@"call_number"] != nil) {
+        return 2;
+    }
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BookTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"book"];
+    
+    NSString * cellIdentifier;
+    if (indexPath.item == 0) {
+        cellIdentifier = @"book";
+    } else {
+        cellIdentifier = @"location";
+    }
+    
+    BookTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"book"];
+        cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     NSMutableDictionary * book = self.books[indexPath.section];
-    [cell titleLabel].text = [book valueForKey:@"title"];
-    [cell authorLabel].text = [book valueForKey:@"author"];
-    [cell publisherLabel].text = [book valueForKey:@"publisher"];
     
-    if ([book valueForKey:@"thumbnail"] != nil) {
-        NSURL * imageURL = [NSURL URLWithString:[book valueForKey:@"thumbnail"]];
-        if (imageURL != nil) {
-            [cell.thumbnail sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"book"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL * imageURL) {
-                CGFloat height = image.size.height;
-                CGFloat width = image.size.width;
-                if (height < 40 || width < 40) {
-                    // too small
-                    [cell.thumbnail setImage:[UIImage imageNamed:@"book"]];
-                }
-            }];
+    if (indexPath.item == 0) {
+        [cell titleLabel].text = [book valueForKey:@"title"];
+        [cell authorLabel].text = [book valueForKey:@"author"];
+        [cell publisherLabel].text = [book valueForKey:@"publisher"];
+        cell.mediumLabel.text = [book valueForKey:@"medium"];
+        
+        if ([book valueForKey:@"thumbnail"] != nil) {
+            NSURL * imageURL = [NSURL URLWithString:[book valueForKey:@"thumbnail"]];
+            if (imageURL != nil) {
+                [cell.thumbnail sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"book"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL * imageURL) {
+                    CGFloat height = image.size.height;
+                    CGFloat width = image.size.width;
+                    if (height < 40 || width < 40) {
+                        // too small
+                        [cell.thumbnail setImage:[UIImage imageNamed:@"book"]];
+                    }
+                }];
+            }
+        } else {
+            [cell.thumbnail setImage:[UIImage imageNamed:@"book"]];
         }
+        cell.thumbnail.hidden = false;
+    } else {
+        cell.locationLabel.text = [book valueForKey:@"location"];
+        cell.callnLabel.text = [book valueForKey:@"call_number"];
+        cell.statusLabel.text = [book valueForKey:@"status"];
     }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == 0) {
+        return 120.0;
+    } else {
+        return 75.0;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == 1) {
+        // enter book detail when select the lcoation row
+        NSIndexPath * bookRowIndexPath = [NSIndexPath indexPathForItem:0 inSection:indexPath.section];
+        [self.tableView selectRowAtIndexPath:bookRowIndexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:true];
+        [self performSegueWithIdentifier:@"detail" sender:self];
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -123,6 +180,18 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController * navigationController = [segue destinationViewController];
+    NSArray * viewControllers = [navigationController viewControllers];
+    if ([viewControllers count] > 0) {
+        BookDetailViewController * bookDetailViewController = viewControllers[0];
+        if (bookDetailViewController != nil) {
+            NSIndexPath * selectedIndexPath = [self.tableView indexPathForSelectedRow];
+            bookDetailViewController.book = [self.books objectAtIndex:selectedIndexPath.section];
+            return;
+        }
+    }
+}
 
 - (void)resignOnTap:(id)iSender {
     [self.searchBar resignFirstResponder];

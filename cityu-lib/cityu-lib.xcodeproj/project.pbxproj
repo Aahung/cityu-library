@@ -20,6 +20,15 @@
 		B285B3021A8273410052B607 /* HTMLSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = B285B3011A8273410052B607 /* HTMLSpider.m */; };
 		B285B3071A8278170052B607 /* book.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B285B3061A8278170052B607 /* book.spider.json */; };
 		B286ACA41A831D47008964AE /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B286ACA31A831D47008964AE /* libiconv.2.dylib */; };
+		B286ACA91A833CD6008964AE /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B286ACA81A833CD6008964AE /* BookDetailViewController.m */; };
+		B286ACAB1A83A274008964AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B286ACAA1A83A274008964AE /* Settings.bundle */; };
+		B286ACAE1A83B2B9008964AE /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B286ACAD1A83B2B9008964AE /* UserTableViewController.m */; };
+		B286ACB11A83B76A008964AE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B286ACB01A83B76A008964AE /* LoginViewController.m */; };
+		B286ACB51A83C5C0008964AE /* user.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B286ACB41A83C5C0008964AE /* user.spider.json */; };
+		B286ACB71A83C5D6008964AE /* faillogin.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B286ACB61A83C5D6008964AE /* faillogin.spider.json */; };
+		B286ACB91A83EDC5008964AE /* borrow.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B286ACB81A83EDC5008964AE /* borrow.spider.json */; };
+		B286ACBD1A83F8AD008964AE /* request.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B286ACBC1A83F8AD008964AE /* request.spider.json */; };
+		B286ACBF1A83F8C7008964AE /* record.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B286ACBE1A83F8C7008964AE /* record.spider.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +65,18 @@
 		B285B3011A8273410052B607 /* HTMLSpider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLSpider.m; path = HTMLSpider/HTMLSpider.m; sourceTree = "<group>"; };
 		B285B3061A8278170052B607 /* book.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = book.spider.json; path = "HTMLSpider Documents/book.spider.json"; sourceTree = "<group>"; };
 		B286ACA31A831D47008964AE /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = usr/lib/libiconv.2.dylib; sourceTree = SDKROOT; };
+		B286ACA71A833CD6008964AE /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		B286ACA81A833CD6008964AE /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		B286ACAA1A83A274008964AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B286ACAC1A83B2B9008964AE /* UserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewController.h; sourceTree = "<group>"; };
+		B286ACAD1A83B2B9008964AE /* UserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewController.m; sourceTree = "<group>"; };
+		B286ACAF1A83B76A008964AE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B286ACB01A83B76A008964AE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B286ACB41A83C5C0008964AE /* user.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user.spider.json; path = "HTMLSpider Documents/user.spider.json"; sourceTree = "<group>"; };
+		B286ACB61A83C5D6008964AE /* faillogin.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = faillogin.spider.json; path = "HTMLSpider Documents/faillogin.spider.json"; sourceTree = "<group>"; };
+		B286ACB81A83EDC5008964AE /* borrow.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = borrow.spider.json; path = "HTMLSpider Documents/borrow.spider.json"; sourceTree = "<group>"; };
+		B286ACBC1A83F8AD008964AE /* request.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = request.spider.json; path = "HTMLSpider Documents/request.spider.json"; sourceTree = "<group>"; };
+		B286ACBE1A83F8C7008964AE /* record.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = record.spider.json; path = "HTMLSpider Documents/record.spider.json"; sourceTree = "<group>"; };
 		ED65A34A537F34C726ED0817 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +151,12 @@
 				B23F01DB1A8143FF000980E5 /* Supporting Files */,
 				B23F02011A814B18000980E5 /* BookTableViewCell.h */,
 				B23F02021A814B18000980E5 /* BookTableViewCell.m */,
+				B286ACA71A833CD6008964AE /* BookDetailViewController.h */,
+				B286ACA81A833CD6008964AE /* BookDetailViewController.m */,
+				B286ACAC1A83B2B9008964AE /* UserTableViewController.h */,
+				B286ACAD1A83B2B9008964AE /* UserTableViewController.m */,
+				B286ACAF1A83B76A008964AE /* LoginViewController.h */,
+				B286ACB01A83B76A008964AE /* LoginViewController.m */,
 				B23F02071A814D42000980E5 /* Class */,
 			);
 			path = "cityu-lib";
@@ -138,6 +165,7 @@
 		B23F01DB1A8143FF000980E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B286ACAA1A83A274008964AE /* Settings.bundle */,
 				B23F01DC1A8143FF000980E5 /* Info.plist */,
 				B23F01DD1A8143FF000980E5 /* main.m */,
 			);
@@ -176,7 +204,12 @@
 		B285B3031A82777F0052B607 /* HTMLSpider Documents */ = {
 			isa = PBXGroup;
 			children = (
+				B286ACB61A83C5D6008964AE /* faillogin.spider.json */,
 				B285B3061A8278170052B607 /* book.spider.json */,
+				B286ACBE1A83F8C7008964AE /* record.spider.json */,
+				B286ACB81A83EDC5008964AE /* borrow.spider.json */,
+				B286ACB41A83C5C0008964AE /* user.spider.json */,
+				B286ACBC1A83F8AD008964AE /* request.spider.json */,
 			);
 			name = "HTMLSpider Documents";
 			sourceTree = "<group>";
@@ -263,8 +296,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B286ACBF1A83F8C7008964AE /* record.spider.json in Resources */,
 				B23F01E71A8143FF000980E5 /* Main.storyboard in Resources */,
 				B23F01EC1A8143FF000980E5 /* LaunchScreen.xib in Resources */,
+				B286ACB91A83EDC5008964AE /* borrow.spider.json in Resources */,
+				B286ACB51A83C5C0008964AE /* user.spider.json in Resources */,
+				B286ACBD1A83F8AD008964AE /* request.spider.json in Resources */,
+				B286ACAB1A83A274008964AE /* Settings.bundle in Resources */,
+				B286ACB71A83C5D6008964AE /* faillogin.spider.json in Resources */,
 				B285B3071A8278170052B607 /* book.spider.json in Resources */,
 				B23F01E91A8143FF000980E5 /* Images.xcassets in Resources */,
 			);
@@ -319,9 +358,12 @@
 			files = (
 				B23F02031A814B18000980E5 /* BookTableViewCell.m in Sources */,
 				B23F01E41A8143FF000980E5 /* SearchViewController.m in Sources */,
+				B286ACAE1A83B2B9008964AE /* UserTableViewController.m in Sources */,
 				B23F01E11A8143FF000980E5 /* AppDelegate.m in Sources */,
 				B285B3021A8273410052B607 /* HTMLSpider.m in Sources */,
+				B286ACB11A83B76A008964AE /* LoginViewController.m in Sources */,
 				B23F01DE1A8143FF000980E5 /* main.m in Sources */,
+				B286ACA91A833CD6008964AE /* BookDetailViewController.m in Sources */,
 				B23F02061A814D27000980E5 /* Library.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

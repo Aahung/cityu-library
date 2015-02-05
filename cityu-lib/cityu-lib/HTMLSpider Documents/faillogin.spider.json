@@ -1,0 +1,14 @@
+{
+    "unit": {
+        "name": "page",
+        "selector": "body",
+    },
+    "property": [
+                 {
+                 "name": "error",
+                 "selector": "form[name='patform'] > font[color='red']",
+                 "index": 0,
+                 "attribute": "text"
+                 }
+                 ]
+}

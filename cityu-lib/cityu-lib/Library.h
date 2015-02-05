@@ -15,10 +15,39 @@
 @interface Library : NSObject
 
 @property NSString * host;
+@property NSMutableDictionary * userInfo;
 
 - (void) searchBooksWithString: (NSString *) string success: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
 
+- (void) tryLogin: (NSString *)name sid: (NSString *) sid pin: (NSString *) pin success: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
+
+- (void) tryLogin: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
+
+- (void) downloadBorrowItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
+
+- (NSArray *) parseBorrowFromData: (NSData *) data;
+
+- (void) downloadRecordItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
+
+- (NSArray *) parseRecordFromData: (NSData *) data;
+
+- (void) downloadRequestItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
+
+- (NSArray *) parseRequestFromData: (NSData *) data;
+
 - (NSArray *) parseResultFromData: (NSData *) data;
+
+- (NSString *) parseLogInErrorFromData: (NSData *) data;
+
+- (BOOL) parseLogInSuccessFromData: (NSData *) data;
+
+- (BOOL) getUser;
+
+- (NSString *) getUserName;
+
+- (void) setUser: (NSString *)name sid: (NSString *) sid pin: (NSString *) pin;
+
+- (void) clearUser;
 
 @end
 

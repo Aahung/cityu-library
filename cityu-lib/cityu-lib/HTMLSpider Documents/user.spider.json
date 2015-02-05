@@ -1,0 +1,34 @@
+{
+    "unit": {
+        "name": "page",
+        "selector": "body",
+    },
+    "property": [
+                 {
+                 "name": "header",
+                 "selector": "h3",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "fine",
+                 "selector": "a[href$='overdues']",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "record_link",
+                 "selector": "a[href$='readinghistory']",
+                 "index": 0,
+                 "attribute": "href"
+                 }, {
+                 "name": "borrow_link",
+                 "selector": "a[href$='items']",
+                 "index": 0,
+                 "attribute": "href"
+                 }, {
+                 "name": "request_link",
+                 "selector": "a[href$='holds']",
+                 "index": 0,
+                 "attribute": "href"
+                 }
+                 ]
+}

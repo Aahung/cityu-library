@@ -29,6 +29,26 @@
                  "selector": "td > a > img",
                  "index": 0,
                  "attribute": "src"
-                 }
+                 }, {
+                 "name": "medium",
+                 "selector": "tr > td:nth-child(2)",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "location",
+                 "selector": ".bibItemsEntry > td",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "call_number",
+                 "selector": ".bibItemsEntry > td",
+                 "index": 1,
+                 "attribute": "text"
+                 }, {
+                 "name": "status",
+                 "selector": ".bibItemsEntry > td",
+                 "index": 2,
+                 "attribute": "text"
+                 },
                  ]
 }
