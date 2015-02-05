@@ -128,10 +128,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController * navigationController = [segue destinationViewController];
-    NSArray * viewControllers = [navigationController viewControllers];
-    if ([viewControllers count] > 0) {
-        BookDetailViewController * bookDetailViewController = viewControllers[0];
+    if ([segue.identifier  isEqual: @"detail"]) {
+        UINavigationController * navigationController = (UINavigationController *)[segue destinationViewController];
+        BookDetailViewController * bookDetailViewController;
+        if ([navigationController isKindOfClass:[BookDetailViewController class]]) {
+            bookDetailViewController = (BookDetailViewController *)navigationController;
+        } else {
+            bookDetailViewController = (BookDetailViewController *)[navigationController topViewController];
+        }
         if (bookDetailViewController != nil) {
             bookDetailViewController.book = sender;
             return;
@@ -210,6 +214,8 @@
             [alertView show];
             [self.refreshControl endRefreshing];
         }];
+    } else {
+        [self.refreshControl endRefreshing];
     }
 }
 
