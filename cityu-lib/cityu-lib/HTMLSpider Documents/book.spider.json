@@ -1,0 +1,34 @@
+{
+    "unit": {
+        "name": "book",
+        "selector": "tr.mobile-hide",
+    },
+    "property": [
+                 {
+                 "name": "id",
+                 "selector": "input[name='save']",
+                 "index": 0,
+                 "attribute": "value"
+                 }, {
+                 "name": "title",
+                 "selector": ".briefcitTitle > strong > a",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "link",
+                 "selector": ".briefcitTitle > strong > a",
+                 "index": 0,
+                 "attribute": "href"
+                 }, {
+                 "name": "title_author_publisher",
+                 "selector": ".briefcitTitle",
+                 "index": 0,
+                 "attribute": "text"
+                 }, {
+                 "name": "thumbnail",
+                 "selector": "td > a > img",
+                 "index": 0,
+                 "attribute": "src"
+                 }
+                 ]
+}
