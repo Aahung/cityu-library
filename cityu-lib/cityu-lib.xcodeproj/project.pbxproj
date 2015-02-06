@@ -17,6 +17,7 @@
 		B23F01F81A8143FF000980E5 /* cityu_libTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F01F71A8143FF000980E5 /* cityu_libTests.m */; };
 		B23F02031A814B18000980E5 /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F02021A814B18000980E5 /* BookTableViewCell.m */; };
 		B23F02061A814D27000980E5 /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F02051A814D27000980E5 /* Library.m */; };
+		B28450341A8533680027C67F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B28450331A8533680027C67F /* LICENSE */; };
 		B285B3021A8273410052B607 /* HTMLSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = B285B3011A8273410052B607 /* HTMLSpider.m */; };
 		B285B3071A8278170052B607 /* book.spider.json in Resources */ = {isa = PBXBuildFile; fileRef = B285B3061A8278170052B607 /* book.spider.json */; };
 		B286ACA41A831D47008964AE /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B286ACA31A831D47008964AE /* libiconv.2.dylib */; };
@@ -61,6 +62,7 @@
 		B23F02021A814B18000980E5 /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		B23F02041A814CB5000980E5 /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		B23F02051A814D27000980E5 /* Library.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Library.m; sourceTree = "<group>"; };
+		B28450331A8533680027C67F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		B285B3001A8273410052B607 /* HTMLSpider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLSpider.h; path = HTMLSpider/HTMLSpider.h; sourceTree = "<group>"; };
 		B285B3011A8273410052B607 /* HTMLSpider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLSpider.m; path = HTMLSpider/HTMLSpider.m; sourceTree = "<group>"; };
 		B285B3061A8278170052B607 /* book.spider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = book.spider.json; path = "HTMLSpider Documents/book.spider.json"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		B23F01DB1A8143FF000980E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B28450331A8533680027C67F /* LICENSE */,
 				B286ACAA1A83A274008964AE /* Settings.bundle */,
 				B23F01DC1A8143FF000980E5 /* Info.plist */,
 				B23F01DD1A8143FF000980E5 /* main.m */,
@@ -301,6 +304,7 @@
 				B23F01EC1A8143FF000980E5 /* LaunchScreen.xib in Resources */,
 				B286ACB91A83EDC5008964AE /* borrow.spider.json in Resources */,
 				B286ACB51A83C5C0008964AE /* user.spider.json in Resources */,
+				B28450341A8533680027C67F /* LICENSE in Resources */,
 				B286ACBD1A83F8AD008964AE /* request.spider.json in Resources */,
 				B286ACAB1A83A274008964AE /* Settings.bundle in Resources */,
 				B286ACB71A83C5D6008964AE /* faillogin.spider.json in Resources */,

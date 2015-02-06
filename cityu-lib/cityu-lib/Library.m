@@ -14,13 +14,8 @@
 
 @implementation Library
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.host = @"http://lib.cityu.edu.hk";
-    }
-    return self;
++ (NSString *) host {
+    return @"http://lib.cityu.edu.hk";
 }
 
 - (NSString *) buildQueryString: (NSArray *) keys values: (NSArray *) values {
@@ -36,9 +31,9 @@
 }
 
 
-- (void) searchBooksWithString:(NSString *)string success: successHandler error: errorHandler {
+- (void) searchBooksWithString:(NSString *)string  methodIndex: (NSInteger) index success: successHandler error: errorHandler {
     NSArray * keys = [NSArray arrayWithObjects:@"searchtype", @"searcharg", @"searchscope", @"SORT", @"extended", @"SUBMIT", nil];
-    NSArray * values = [NSArray arrayWithObjects:@"X", string, @"8", @"D", @"0", @"Search", nil];
+    NSArray * values = [NSArray arrayWithObjects:[self getSearchMethodCodeByIndex:index], string, @"8", @"D", @"0", @"Search", nil];
     NSString * queryString = [self buildQueryString:keys values:values];
     NSString * URLString = [NSString stringWithFormat:@"http://lib.cityu.edu.hk/search~S8/?%@", queryString];
     [self downloadByURLString:URLString success:successHandler error:errorHandler];
@@ -156,7 +151,7 @@
 }
 
 - (void) downloadBorrowItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler {
-    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", self.host, [self.userInfo valueForKey:@"borrow_link"]] success:successHandler error:errorHandler];
+    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", Library.host, [self.userInfo valueForKey:@"borrow_link"]] success:successHandler error:errorHandler];
 }
 
 - (NSArray *) parseBorrowFromData: (NSData *) data {
@@ -169,7 +164,7 @@
 }
 
 - (void) downloadRecordItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler {
-    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", self.host, [self.userInfo valueForKey:@"record_link"]] success:successHandler error:errorHandler];
+    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", Library.host, [self.userInfo valueForKey:@"record_link"]] success:successHandler error:errorHandler];
 }
 
 - (NSArray *) parseRecordFromData: (NSData *) data {
@@ -182,7 +177,7 @@
 }
 
 - (void) downloadRequestItems: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler {
-    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", self.host, [self.userInfo valueForKey:@"request_link"]] success:successHandler error:errorHandler];
+    [self downloadByURLString:[NSString stringWithFormat:@"%@%@", Library.host, [self.userInfo valueForKey:@"request_link"]] success:successHandler error:errorHandler];
 }
 
 - (NSArray *) parseRequestFromData: (NSData *) data {
@@ -201,6 +196,13 @@
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager GET:URLString parameters:nil success:successHandler failure:errorHandler];
     [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:nil error:nil];
+}
+
+- (NSArray *) getSearchMethods {
+    return @[@"Keyword", @"Author", @"Title", @"Subject"];
+}
+- (NSString *) getSearchMethodCodeByIndex: (NSInteger) index {
+    return @[@"X", @"a", @"t", @"d"][index];
 }
 
 - (NSData *)cleanUTF8:(NSData *)data {

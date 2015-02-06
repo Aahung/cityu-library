@@ -14,10 +14,11 @@
 
 @interface Library : NSObject
 
-@property NSString * host;
 @property NSMutableDictionary * userInfo;
 
-- (void) searchBooksWithString: (NSString *) string success: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
++ (NSString *) host;
+
+- (void) searchBooksWithString: (NSString *) string methodIndex: (NSInteger) index success: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
 
 - (void) tryLogin: (NSString *)name sid: (NSString *) sid pin: (NSString *) pin success: (void (^)(AFHTTPRequestOperation *, id)) successHandler error: (void (^)(AFHTTPRequestOperation *, id)) errorHandler;
 
@@ -48,6 +49,9 @@
 - (void) setUser: (NSString *)name sid: (NSString *) sid pin: (NSString *) pin;
 
 - (void) clearUser;
+
+- (NSArray *) getSearchMethods;
+- (NSString *) getSearchMethodCodeByIndex: (NSInteger) index;
 
 @end
 

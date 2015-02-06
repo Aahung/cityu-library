@@ -9,10 +9,10 @@
 #import "SearchViewController.h"
 #import "BookTableViewCell.h"
 #import "BookDetailViewController.h"
-#import "Library.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MBProgressHUD.h"
-
+#import "AppDelegate.h"
+#import <SIAlertView.h>
 
 @interface SearchViewController ()
 
@@ -29,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.library = [[Library alloc] init];
+    // self.searchBar.scopeButtonTitles = [self.library getSearchMethods];
     
     self.lauched = false;
     
@@ -49,9 +52,8 @@
     self.tableView.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
     
     // version
-    NSString * version = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleShortVersionString"];
-    NSString * buildNumber = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleVersion"];
-    self.searchBar.placeholder = [NSString stringWithFormat:@"version: %@ (%@)", version, buildNumber];
+    
+    self.searchBar.placeholder = [NSString stringWithFormat:@"version: %@", [AppDelegate version]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -149,6 +151,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.item == 1) {
         // enter book detail when select the lcoation row
         NSIndexPath * bookRowIndexPath = [NSIndexPath indexPathForItem:0 inSection:indexPath.section];
@@ -163,10 +166,9 @@
     [self.searchBar resignFirstResponder];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        Library * library = [[Library alloc] init];
         
-        [library searchBooksWithString:searchBar.text success: ^(AFHTTPRequestOperation *operation, id responseObject){
-            NSArray * books = [library parseResultFromData:responseObject];
+        [self.library searchBooksWithString:searchBar.text methodIndex: [self.searchBar selectedScopeButtonIndex] success: ^(AFHTTPRequestOperation *operation, id responseObject){
+            NSArray * books = [self.library parseResultFromData:responseObject];
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.books = [NSMutableArray arrayWithArray:books];
                 [self.tableView reloadData];
@@ -201,4 +203,21 @@
     [self.searchBar resignFirstResponder];
 }
 
+- (IBAction)aboutAction:(id)sender {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@""];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"CityU Library %@, Open Sourced", [AppDelegate version]] andMessage:content];
+    [alertView addButtonWithTitle:@"OK"
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              
+                          }];
+    [alertView addButtonWithTitle:@"View on Github"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/Aahung/cityu-library"]];
+                          }];
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    [alertView show];
+}
 @end

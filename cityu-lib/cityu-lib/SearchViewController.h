@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Library.h"
 
 @interface SearchViewController : UIViewController
     <UITableViewDataSource, UITableViewDelegate>
 
 
+@property Library * library;
 
-
+- (IBAction)aboutAction:(id)sender;
 
 @end
 

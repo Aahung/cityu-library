@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="Tsh-V7-RCf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -246,7 +246,13 @@
                             <constraint firstAttribute="bottom" secondItem="DOI-AR-xmP" secondAttribute="bottom" id="cku-tP-Rfo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="u7c-1R-wfc"/>
+                    <navigationItem key="navigationItem" title="Search" id="u7c-1R-wfc">
+                        <barButtonItem key="rightBarButtonItem" image="about" id="vZk-xd-Yjp">
+                            <connections>
+                                <action selector="aboutAction:" destination="BYZ-38-t0r" id="Asg-v7-pGU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="Tsh-V7-RCf" id="dYI-Co-pbi"/>
                         <outlet property="tableView" destination="DOI-AR-xmP" id="swF-rJ-PBh"/>
@@ -626,6 +632,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="about" width="32" height="32"/>
         <image name="archive" width="32" height="32"/>
         <image name="bg" width="1242" height="2208"/>
         <image name="book" width="100" height="100"/>

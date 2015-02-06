@@ -15,6 +15,11 @@
                  "index": 0,
                  "attribute": "text"
                  }, {
+                 "name": "fine_link",
+                 "selector": "a[href$='overdues']",
+                 "index": 0,
+                 "attribute": "href"
+                 }, {
                  "name": "record_link",
                  "selector": "a[href$='readinghistory']",
                  "index": 0,

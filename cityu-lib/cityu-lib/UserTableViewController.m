@@ -17,6 +17,20 @@
 
 @implementation UserTableViewController
 
++ (NSArray *) headers {
+    return @[@"My Fines", @"My Borrows", @"My Requests", @"My History"];
+}
+
+- (NSArray *) headerLinks {
+    NSArray * keys = @[@"fine_link", @"borrow_link", @"request_link", @"record_link"];
+    NSMutableArray * links = [[NSMutableArray alloc] init];
+    for (NSString * key in keys) {
+        NSString * link = [self.library.userInfo valueForKey:key];
+        [links addObject:link];
+    }
+    return links;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = true;
@@ -57,9 +71,22 @@
     return 4;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSArray * headers = @[@"My Fines", @"My Borrows", @"My Requests", @"My History"];
-    return headers[section];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 55;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView * view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
+    UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 320, 55)];
+    [button setTitle:[UserTableViewController headers][section] forState:UIControlStateNormal];
+    [button setTitleColor:self.view.tintColor forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(openSection:) forControlEvents:UIControlEventTouchUpInside];
+    return view;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -128,7 +155,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier  isEqual: @"detail"]) {
+    if ([segue.identifier isEqual: @"detail"]) {
         UINavigationController * navigationController = (UINavigationController *)[segue destinationViewController];
         BookDetailViewController * bookDetailViewController;
         if ([navigationController isKindOfClass:[BookDetailViewController class]]) {
@@ -248,4 +275,17 @@
         [alertView show];
     }
 }
+
+- (void) openSection: (UIButton *) sender {
+    if (self.library.userInfo == nil) {
+        // wait
+        return;
+    }
+    NSString * headerText = sender.titleLabel.text;
+    NSInteger index = [[UserTableViewController headers] indexOfObject:headerText];
+    NSString * link = [self headerLinks][index];
+    NSDictionary * data = @{@"title": headerText, @"link": link};
+    [self performSegueWithIdentifier:@"detail" sender:data];
+}
+
 @end
