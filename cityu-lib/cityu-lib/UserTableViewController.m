@@ -26,6 +26,9 @@
     NSMutableArray * links = [[NSMutableArray alloc] init];
     for (NSString * key in keys) {
         NSString * link = [self.library.userInfo valueForKey:key];
+        if (link == nil) {
+            link = @"";
+        }
         [links addObject:link];
     }
     return links;
@@ -283,7 +286,17 @@
     }
     NSString * headerText = sender.titleLabel.text;
     NSInteger index = [[UserTableViewController headers] indexOfObject:headerText];
-    NSString * link = [self headerLinks][index];
+    NSArray * links = [self headerLinks];
+    NSString * link = links[index];
+    if ([link isEqual: @""]) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Sorry" andMessage:[NSString stringWithFormat:@"%@ is not reachable now.", headerText]];
+        [alertView addButtonWithTitle:@"OK"
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:nil];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        [alertView show];
+        return;
+    }
     NSDictionary * data = @{@"title": headerText, @"link": link};
     [self performSegueWithIdentifier:@"detail" sender:data];
 }
