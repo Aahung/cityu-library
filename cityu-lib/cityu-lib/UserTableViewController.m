@@ -8,8 +8,8 @@
 
 #import "UserTableViewController.h"
 #import <MBProgressHUD.h>
-#import <SIAlertView.h>
 #import "BookDetailViewController.h"
+#import "Classes/SimpleAlertViewController.h"
 
 @interface UserTableViewController ()
 
@@ -159,13 +159,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqual: @"detail"]) {
-        UINavigationController * navigationController = (UINavigationController *)[segue destinationViewController];
-        BookDetailViewController * bookDetailViewController;
-        if ([navigationController isKindOfClass:[BookDetailViewController class]]) {
-            bookDetailViewController = (BookDetailViewController *)navigationController;
-        } else {
-            bookDetailViewController = (BookDetailViewController *)[navigationController topViewController];
-        }
+        BookDetailViewController * bookDetailViewController = (BookDetailViewController *)[segue destinationViewController];
         if (bookDetailViewController != nil) {
             bookDetailViewController.book = sender;
             return;
@@ -236,12 +230,7 @@
                 [self.refreshControl endRefreshing];
             }
         } error:^(AFHTTPRequestOperation *operation, id responseObject){
-            SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error" andMessage:@"Please check your network connection."];
-            [alertView addButtonWithTitle:@"OK"
-                                     type:SIAlertViewButtonTypeDefault
-                                  handler:nil];
-            alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-            [alertView show];
+            [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:@"Error" message:@"Please check your network connection."];
             [self.refreshControl endRefreshing];
         }];
     } else {
@@ -251,31 +240,15 @@
 
 - (IBAction)userAction:(id)sender {
     if ([self.library getUser]) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hi, %@", [self.library getUserName]] andMessage:@"You can touch the button to log out."];
-        [alertView addButtonWithTitle:@"Cancel"
-                                 type:SIAlertViewButtonTypeCancel
-                              handler:nil];
-        [alertView addButtonWithTitle:@"Log out"
-                                 type:SIAlertViewButtonTypeDestructive
-                              handler:^(SIAlertView *alert) {
-                                  // logout
-                                  [self.library clearUser];
-                                  [self updateView];
-                              }];
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+        [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:[NSString stringWithFormat:@"Hi, %@", [self.library getUserName]] message:@"You can touch the button to log out." defaultTitle:@"Log out" defaultHandler:^{
+            // logout
+            [self.library clearUser];
+            [self updateView];
+        }];
     } else {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"ULibrary" andMessage:@"You will going to log in the CityU library system."];
-        [alertView addButtonWithTitle:@"Cancel"
-                                 type:SIAlertViewButtonTypeCancel
-                              handler:nil];
-        [alertView addButtonWithTitle:@"Log in"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alert) {
-                                  [self performSegueWithIdentifier:@"login" sender:self];
-                              }];
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+        [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:@"ULibrary" message:@"You will going to log in the CityU library system." defaultTitle:@"Log in" defaultHandler:^{
+            [self performSegueWithIdentifier:@"login" sender:self];
+        }];
     }
 }
 
@@ -289,12 +262,7 @@
     NSArray * links = [self headerLinks];
     NSString * link = links[index];
     if ([link isEqual: @""]) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Sorry" andMessage:[NSString stringWithFormat:@"%@ is not reachable now.", headerText]];
-        [alertView addButtonWithTitle:@"OK"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:nil];
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+        [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:@"Sorry" message:[NSString stringWithFormat:@"%@ is not reachable now.", headerText]];
         return;
     }
     NSDictionary * data = @{@"title": headerText, @"link": link};

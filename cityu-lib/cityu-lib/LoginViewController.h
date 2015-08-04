@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Library.h"
-#import <SIAlertView.h>
 
 @interface LoginViewController : UIViewController
 

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "MBProgressHUD.h"
+#import "Classes/SimpleAlertViewController.h"
 
 @interface LoginViewController ()
 
@@ -53,12 +54,7 @@
     NSString * pin = self.pinTextField.text;
     
     if ([name  isEqual: @""] || [sid  isEqual: @""] || [pin  isEqual: @""]) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error" andMessage:@"All fields should be filled."];
-        [alertView addButtonWithTitle:@"OK"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:nil];
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+        [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:@"Error" message:@"All fields should be filled."];
         return;
     }
     
@@ -71,12 +67,7 @@
             // alert
             error = [error stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error" andMessage:error];
-                [alertView addButtonWithTitle:@"OK"
-                                         type:SIAlertViewButtonTypeDefault
-                                      handler:nil];
-                alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-                [alertView show];
+                [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:@"Error" message:error];
             });
         } else {
             if ([library parseLogInSuccessFromData:responseObject]) {

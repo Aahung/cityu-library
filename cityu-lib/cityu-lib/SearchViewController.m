@@ -12,7 +12,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
-#import <SIAlertView.h>
+#import "Classes/SimpleAlertViewController.h"
 
 @interface SearchViewController ()
 
@@ -184,13 +184,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier  isEqual: @"detail"]) {
-        UINavigationController * navigationController = (UINavigationController *)[segue destinationViewController];
-        BookDetailViewController * bookDetailViewController;
-        if ([navigationController isKindOfClass:[BookDetailViewController class]]) {
-            bookDetailViewController = (BookDetailViewController *)navigationController;
-        } else {
-            bookDetailViewController = (BookDetailViewController *)[navigationController topViewController];
-        }
+        BookDetailViewController * bookDetailViewController = (BookDetailViewController *)[segue destinationViewController];
         if (bookDetailViewController != nil) {
             NSIndexPath * selectedIndexPath = [self.tableView indexPathForSelectedRow];
             bookDetailViewController.book = [self.books objectAtIndex:selectedIndexPath.section];
@@ -206,18 +200,7 @@
 - (IBAction)aboutAction:(id)sender {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@""];
     NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"CityU Library %@, Open Sourced", [AppDelegate version]] andMessage:content];
-    [alertView addButtonWithTitle:@"OK"
-                             type:SIAlertViewButtonTypeCancel
-                          handler:^(SIAlertView *alert) {
-                              
-                          }];
-    [alertView addButtonWithTitle:@"View on Github"
-                             type:SIAlertViewButtonTypeDefault
-                          handler:^(SIAlertView *alert) {
-                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/Aahung/cityu-library"]];
-                          }];
-    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-    [alertView show];
+    [[[SimpleAlertViewController alloc] initWithViewController:self] showAlertWithTitle:[NSString stringWithFormat:@"CityU Library %@, Open Sourced", [AppDelegate version]] message:content];
 }
+
 @end

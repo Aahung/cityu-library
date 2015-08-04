@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A2192C84ACE6248BCD2199D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2FBD9FF21FE1177A794D1E /* libPods.a */; };
+		B2093C2D1B7165830097AD9E /* SimpleAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2093C2A1B7165830097AD9E /* SimpleAlertView.m */; };
+		B2093C2E1B7165830097AD9E /* SimpleAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2093C2C1B7165830097AD9E /* SimpleAlertViewController.m */; };
 		B23F01DE1A8143FF000980E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F01DD1A8143FF000980E5 /* main.m */; };
 		B23F01E11A8143FF000980E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F01E01A8143FF000980E5 /* AppDelegate.m */; };
 		B23F01E41A8143FF000980E5 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B23F01E31A8143FF000980E5 /* SearchViewController.m */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		2A2FBD9FF21FE1177A794D1E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BFCDF6097ED796B8234FED /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B2093C291B7165830097AD9E /* SimpleAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleAlertView.h; path = Classes/SimpleAlertView.h; sourceTree = "<group>"; };
+		B2093C2A1B7165830097AD9E /* SimpleAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleAlertView.m; path = Classes/SimpleAlertView.m; sourceTree = "<group>"; };
+		B2093C2B1B7165830097AD9E /* SimpleAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleAlertViewController.h; path = Classes/SimpleAlertViewController.h; sourceTree = "<group>"; };
+		B2093C2C1B7165830097AD9E /* SimpleAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleAlertViewController.m; path = Classes/SimpleAlertViewController.m; sourceTree = "<group>"; };
 		B23F01D81A8143FF000980E5 /* cityu-lib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cityu-lib.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23F01DC1A8143FF000980E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B23F01DD1A8143FF000980E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -120,6 +126,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B2093C281B7165770097AD9E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B2093C291B7165830097AD9E /* SimpleAlertView.h */,
+				B2093C2A1B7165830097AD9E /* SimpleAlertView.m */,
+				B2093C2B1B7165830097AD9E /* SimpleAlertViewController.h */,
+				B2093C2C1B7165830097AD9E /* SimpleAlertViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		B23F01CF1A8143FF000980E5 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +160,7 @@
 		B23F01DA1A8143FF000980E5 /* cityu-lib */ = {
 			isa = PBXGroup;
 			children = (
+				B2093C281B7165770097AD9E /* Classes */,
 				B23F01DF1A8143FF000980E5 /* AppDelegate.h */,
 				B23F01E01A8143FF000980E5 /* AppDelegate.m */,
 				B23F01E21A8143FF000980E5 /* SearchViewController.h */,
@@ -366,7 +384,9 @@
 				B23F01E11A8143FF000980E5 /* AppDelegate.m in Sources */,
 				B285B3021A8273410052B607 /* HTMLSpider.m in Sources */,
 				B286ACB11A83B76A008964AE /* LoginViewController.m in Sources */,
+				B2093C2E1B7165830097AD9E /* SimpleAlertViewController.m in Sources */,
 				B23F01DE1A8143FF000980E5 /* main.m in Sources */,
+				B2093C2D1B7165830097AD9E /* SimpleAlertView.m in Sources */,
 				B286ACA91A833CD6008964AE /* BookDetailViewController.m in Sources */,
 				B23F02061A814D27000980E5 /* Library.m in Sources */,
 			);
