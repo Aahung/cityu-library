@@ -41,6 +41,15 @@
     self.navigationItem.title = @"My Library ";
     self.library = [[Library alloc] init];
     
+    
+    // background
+    UIImageView * bgImageView = [[UIImageView alloc] init];
+    [bgImageView setImage:[UIImage imageNamed:@"bg"]];
+    self.tableView.backgroundView = bgImageView;
+    self.tableView.backgroundView.alpha = 0.3;
+    self.tableView.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"pull to refresh"];
     [self.refreshControl addTarget:self action:@selector(updateLibrary) forControlEvents:UIControlEventValueChanged];
