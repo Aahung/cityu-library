@@ -2,6 +2,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
+target 'cityu-lib'
+
 pod 'AFNetworking', '~> 2.0'
 pod 'HTMLReader'
 pod 'SDWebImage', '~>3.6'
