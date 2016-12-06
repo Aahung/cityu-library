@@ -91,10 +91,11 @@
     
     UIView * view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
     UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(0, 0, 320, 55)];
+    [button setFrame:CGRectMake(20, 0, 300, 55)];
     [button setTitle:[UserTableViewController headers][section] forState:UIControlStateNormal];
     [button setTitleColor:self.view.tintColor forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [view addSubview:button];
     [button addTarget:self action:@selector(openSection:) forControlEvents:UIControlEventTouchUpInside];
     return view;
